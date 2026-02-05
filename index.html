@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystic — Матрица Судьбы</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <style>
+        body { background: #0f172a; color: #e2e8f0; font-family: 'Montserrat', sans-serif; }
+        .mystic-gold { color: #fbbf24; }
+        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(251, 191, 36, 0.2); }
+        .matrix-grid { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <nav class="p-6 flex justify-between items-center border-b border-white/10">
+        <h1 class="text-2xl font-bold mystic-gold tracking-widest uppercase">Mystic</h1>
+        <div class="space-x-6 text-sm uppercase tracking-wider">
+            <a href="#" class="hover:text-yellow-400 transition">Матрица</a>
+            <a href="#" class="hover:text-yellow-400 transition">Гороскоп</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto text-center mb-12">
+            <h2 class="text-4xl md:text-6xl font-serif italic mb-4">Узнай свою судьбу по дате рождения</h2>
+            <p class="text-gray-400">Древние расчеты Матрицы Судьбы в современном интерфейсе</p>
+        </div>
+
+        <div class="glass-card max-w-md mx-auto p-8 rounded-3xl shadow-2xl mb-12">
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Дата рождения</label>
+                    <input type="date" id="birthDate" class="w-full bg-slate-900/50 border border-slate-700 rounded-lg p-3 outline-none focus:border-yellow-500 transition">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Ваш пол</label>
+                    <div class="flex gap-4">
+                        <button onclick="setGender('male')" id="btn-male" class="flex-1 py-2 border border-slate-700 rounded-lg hover:border-yellow-500 transition">Мужской</button>
+                        <button onclick="setGender('female')" id="btn-female" class="flex-1 py-2 border border-slate-700 rounded-lg hover:border-yellow-500 transition">Женский</button>
+                    </div>
+                </div>
+                <button onclick="calculate()" class="w-full bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-yellow-900/20 transition transform hover:-translate-y-1">
+                    Рассчитать Матрицу
+                </button>
+            </div>
+        </div>
+
+        <div id="results" class="hidden space-y-8 animate-fade-in">
+            <div class="glass-card p-6 rounded-3xl overflow-x-auto">
+                <h3 class="text-center mystic-gold mb-6 uppercase tracking-widest">Ваша числовая матрица</h3>
+                <div id="matrixDisplay" class="matrix-grid text-4xl text-center grid grid-cols-3 gap-4 italic">
+                    </div>
+            </div>
+            
+            <div id="interpretation" class="prose prose-invert max-w-none glass-card p-8 rounded-3xl">
+                </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
