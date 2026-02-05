@@ -2,64 +2,71 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mystic — Матрица Судьбы</title>
+    <title>Mystic — Твоя Матрица Судьбы</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <style>
-        body { background: #0f172a; color: #e2e8f0; font-family: 'Montserrat', sans-serif; }
-        .mystic-gold { color: #fbbf24; }
-        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(251, 191, 36, 0.2); }
-        .matrix-grid { font-family: 'Playfair Display', serif; }
+        body { background: #05070a; color: #d1d5db; font-family: 'Inter', sans-serif; }
+        .gold-glow { box-shadow: 0 0 20px rgba(212, 175, 55, 0.1); border: 1px solid #d4af37; }
+        .matrix-cell { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); height: 100px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; transition: 0.3s; }
+        .matrix-cell:hover { background: rgba(212, 175, 55, 0.1); color: #d4af37; }
     </style>
 </head>
-<body class="min-h-screen">
+<body class="p-4 md:p-12">
+    <div class="max-w-5xl mx-auto">
+        <header class="text-center mb-16">
+            <h1 class="text-5xl font-serif italic text-amber-500 mb-2">Mystic</h1>
+            <p class="text-gray-500 uppercase tracking-widest text-sm">Нумерология и Гороскопы</p>
+        </header>
 
-    <nav class="p-6 flex justify-between items-center border-b border-white/10">
-        <h1 class="text-2xl font-bold mystic-gold tracking-widest uppercase">Mystic</h1>
-        <div class="space-x-6 text-sm uppercase tracking-wider">
-            <a href="#" class="hover:text-yellow-400 transition">Матрица</a>
-            <a href="#" class="hover:text-yellow-400 transition">Гороскоп</a>
-        </div>
-    </nav>
-
-    <main class="container mx-auto px-4 py-12">
-        <div class="max-w-4xl mx-auto text-center mb-12">
-            <h2 class="text-4xl md:text-6xl font-serif italic mb-4">Узнай свою судьбу по дате рождения</h2>
-            <p class="text-gray-400">Древние расчеты Матрицы Судьбы в современном интерфейсе</p>
-        </div>
-
-        <div class="glass-card max-w-md mx-auto p-8 rounded-3xl shadow-2xl mb-12">
-            <div class="space-y-6">
-                <div>
-                    <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Дата рождения</label>
-                    <input type="date" id="birthDate" class="w-full bg-slate-900/50 border border-slate-700 rounded-lg p-3 outline-none focus:border-yellow-500 transition">
+        <div class="grid md:grid-cols-2 gap-12">
+            <section class="space-y-6">
+                <div class="bg-zinc-900/50 p-8 rounded-3xl gold-glow">
+                    <h2 class="text-2xl mb-6">Введите данные</h2>
+                    <input type="text" id="date" placeholder="ДД.ММ.ГГГГ" class="w-full bg-black border border-zinc-700 p-4 rounded-xl mb-4 outline-none focus:border-amber-500">
+                    <select id="gender" class="w-full bg-black border border-zinc-700 p-4 rounded-xl mb-6 outline-none">
+                        <option value="женский">Женский</option>
+                        <option value="мужской">Мужской</option>
+                    </select>
+                    <button onclick="getMatrix()" class="w-full bg-amber-600 hover:bg-amber-500 text-white font-bold py-4 rounded-xl transition">Рассчитать</button>
                 </div>
-                <div>
-                    <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Ваш пол</label>
-                    <div class="flex gap-4">
-                        <button onclick="setGender('male')" id="btn-male" class="flex-1 py-2 border border-slate-700 rounded-lg hover:border-yellow-500 transition">Мужской</button>
-                        <button onclick="setGender('female')" id="btn-female" class="flex-1 py-2 border border-slate-700 rounded-lg hover:border-yellow-500 transition">Женский</button>
-                    </div>
-                </div>
-                <button onclick="calculate()" class="w-full bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-yellow-900/20 transition transform hover:-translate-y-1">
-                    Рассчитать Матрицу
-                </button>
-            </div>
-        </div>
+            </section>
 
-        <div id="results" class="hidden space-y-8 animate-fade-in">
-            <div class="glass-card p-6 rounded-3xl overflow-x-auto">
-                <h3 class="text-center mystic-gold mb-6 uppercase tracking-widest">Ваша числовая матрица</h3>
-                <div id="matrixDisplay" class="matrix-grid text-4xl text-center grid grid-cols-3 gap-4 italic">
+            <section id="resultArea" class="hidden">
+                <div class="grid grid-cols-3 gap-2 mb-8">
+                    <div id="cell1" class="matrix-cell rounded-tl-3xl"></div>
+                    <div id="cell4" class="matrix-cell"></div>
+                    <div id="cell7" class="matrix-cell rounded-tr-3xl"></div>
+                    <div id="cell2" class="matrix-cell"></div>
+                    <div id="cell5" class="matrix-cell"></div>
+                    <div id="cell8" class="matrix-cell"></div>
+                    <div id="cell3" class="matrix-cell rounded-bl-3xl"></div>
+                    <div id="cell6" class="matrix-cell"></div>
+                    <div id="cell9" class="matrix-cell rounded-br-3xl"></div>
+                </div>
+                <div id="interpretationText" class="prose prose-invert text-sm leading-relaxed text-gray-400 p-4 border-l-2 border-amber-800">
                     </div>
-            </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        async function getMatrix() {
+            const date = document.getElementById('date').value;
+            const gender = document.getElementById('gender').value;
             
-            <div id="interpretation" class="prose prose-invert max-w-none glass-card p-8 rounded-3xl">
-                </div>
-        </div>
-    </main>
+            // Запрос к твоему API на Render
+            const response = await fetch(`https://твой-бот.onrender.com/calculate?date=${date}&gender=${gender}`);
+            const data = await response.json();
 
-    <script src="script.js"></script>
+            if(data.matrix) {
+                document.getElementById('resultArea').classList.remove('hidden');
+                // Заполняем клетки 1-9
+                for(let i=1; i<=9; i++) {
+                    document.getElementById('cell'+i).innerText = data.matrix[i] || '—';
+                }
+                document.getElementById('interpretationText').innerHTML = data.interpretation.replace(/\n/g, '<br>');
+            }
+        }
+    </script>
 </body>
 </html>
