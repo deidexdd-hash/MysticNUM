@@ -135,6 +135,20 @@ function calculateMatrix() {
     }
     
     currentMatrix = data;
+    
+    // Интеграция с премиум-системами
+    if (window.premiumManager) {
+        premiumManager.setUserMatrix({
+            birthDate: dateInput,
+            gender: gender,
+            cells: data.matrix_counts ? Object.keys(data.matrix_counts).map(key => ({
+                number: parseInt(key),
+                count: data.matrix_counts[key]
+            })) : [],
+            ...data
+        });
+    }
+    
     displayMatrixResults(data);
 }
 
