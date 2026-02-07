@@ -1,0 +1,31 @@
+{
+  "name": "mysticnum-professional",
+  "version": "2.0.0",
+  "description": "Профессиональная система нумерологического анализа - полная версия с 807+ знаниями",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "keywords": [
+    "numerology",
+    "matrix",
+    "destiny",
+    "pythagorean",
+    "professional"
+  ],
+  "author": "MysticNUM Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/mysticnum-professional"
+  }
+}
