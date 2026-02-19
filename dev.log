@@ -1,0 +1,17 @@
+▲ Next.js 16.1.3 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://21.0.7.122:3000
+- Environments: .env
+
+✓ Starting...
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+✓ Ready in 529ms
+ GET / 200 in 2.2s (compile: 2.0s, render: 124ms)
+ GET / 200 in 36ms (compile: 3ms, render: 33ms)
+✓ Compiled in 170ms
+⚠ Cross origin request detected from preview-chat-01a87873-fe9c-4adb-9ea2-bd47bb1db3ae.space.z.ai to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
