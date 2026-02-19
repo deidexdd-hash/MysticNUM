@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   description: "Расчёт матрицы чисел по дате рождения для самопознания",
   keywords: ["матрица", "числа", "нумерология", "дата рождения", "калькулятор"],
   authors: [{ name: "Матрица чисел" }],
-  manifest: "/manifest.json",
+  manifest: "manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
@@ -34,12 +34,12 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+      { url: "icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "icons/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: [
-      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+      { url: "icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "icons/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
   },
 };
@@ -52,23 +52,13 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <head>
-        {/* iOS PWA Meta Tags */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Матрица чисел" />
         <meta name="mobile-web-app-capable" content="yes" />
-        
-        {/* iOS Splash Screen Colors */}
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        
-        {/* Preload fonts for offline */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
-        {/* Fallback for older iOS */}
-        <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-        <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png" />
-        <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png" />
+        <link rel="apple-touch-icon" href="icons/icon-192.png" />
+        <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png" />
+        <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png" />
       </head>
       <body
         className={`${roboto.variable} font-sans antialiased bg-white text-foreground`}
