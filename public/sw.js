@@ -1,18 +1,20 @@
-const CACHE_NAME = 'matrix-numbers-v1';
+const CACHE_NAME = 'matrix-numbers-v2';
+const BASE = '/MysticNUM';
+
 const urlsToCache = [
-  './',
-  './manifest.json',
-  './icons/icon-192.png',
-  './icons/icon-512.png'
+  BASE + '/',
+  BASE + '/manifest.json',
+  BASE + '/icons/icon-192.png',
+  BASE + '/icons/icon-512.png',
+  BASE + '/icons/icon-1024.png',
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
-      })
+    caches.open(CACHE_NAME).then((cache) => {
+      console.log('Opened cache');
+      return cache.addAll(urlsToCache);
+    })
   );
   self.skipWaiting();
 });
@@ -34,28 +36,28 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  // Только GET-запросы
+  if (event.request.method !== 'GET') return;
+
   event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        if (response) {
+    caches.match(event.request).then((response) => {
+      if (response) {
+        return response;
+      }
+      return fetch(event.request).then((response) => {
+        if (!response || response.status !== 200 || response.type !== 'basic') {
           return response;
         }
-        return fetch(event.request).then((response) => {
-          if (!response || response.status !== 200 || response.type !== 'basic') {
-            return response;
-          }
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME)
-            .then((cache) => {
-              cache.put(event.request, responseToCache);
-            });
-          return response;
+        const responseToCache = response.clone();
+        caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, responseToCache);
         });
-      })
-      .catch(() => {
-        if (event.request.mode === 'navigate') {
-          return caches.match('./');
-        }
-      })
+        return response;
+      });
+    }).catch(() => {
+      if (event.request.mode === 'navigate') {
+        return caches.match(BASE + '/');
+      }
+    })
   );
 });
