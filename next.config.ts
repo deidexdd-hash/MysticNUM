@@ -2,9 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
-  // basePath: "/НАЗВАНИЕ_РЕПО",  // Раскомментировать если репозиторий не username.github.io
+  basePath: "/MysticNUM",
   images: {
-    unoptimized: true, // Нужно для статического экспорта
+    unoptimized: true,
   },
   typescript: {
     ignoreBuildErrors: true,
